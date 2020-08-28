@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const hasher = require('./utils/hashing').argon2;
-const db = require('../database/manager');
-const jwt = require('jsonwebtoken');
+const userController = require('../controllers/users');
+const signer = require('./utils/jwt-signer');
 
 const routes = Router();
 
@@ -12,38 +12,52 @@ routes.get('/', (req, res) => {
 routes.post('/login', async (req,res) => {
     let { username, password } = req.body;
 
-    let user = await db.findUser(username);
+    try {
+        let user = await userController.findUser(username);
 
-    if (!user){
-        return res.send('Unauthorized');
+        if (!user || !await hasher.verify(user.password, password)) {
+            res.status(403).send('Forbidden');
+        }
+        else {
+            let token = await signer.sign(user);
+
+            res.cookie('token', token, {
+                httpOnly: true,
+                expires: new Date(Date.now() + 2 * 60 * 60 * 1000)
+            });
+
+            res.send('Authorized');
+        }
     }
-
-    if (await hasher.verify(user.password, password)){
-        let token = jwt.sign(user.id, 'secret');
-
-        res.cookie('token', token, {
-            httpOnly: true,
-            expires: new Date(Date.now() + 2*60*60*1000)
-        });
-
-        return res.send('Authorized');
-    }
-    else {
-        res.status(403).send('Unauthorized');
+    catch (err){
+        console.log(err);
+        res.status(500).send('Internal Server Error');
     }
 });
 
 routes.post('/register', async (req,res) => {
     let { username, password } = req.body;
 
-    password = await hasher.hash(password);
-
     try {
-        let user = await db.addUser(username, password);
+        if (typeof password !== 'string'){
+            throw TypeError();
+        }
+        password = await hasher.hash(password);
+        let user = await userController.addUser(username, password);
+
+        if (!user){
+            return res.status(403).send('User already exists');
+        }
+
         return res.send('Authorized');
     }
-    catch (e){
-        return res.status(403).send('User already exists');
+    catch (err){
+        if (err.constructor === TypeError){
+            return res.status(403).send('Forbidden');
+        }
+        console.log(err);
+
+        return res.status(500).send('Internal Server Error');
     }
 });
 

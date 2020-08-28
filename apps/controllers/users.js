@@ -1,6 +1,6 @@
-const sqlite3 = require('sqlite3').verbose();
+const sqlite3 = require('sqlite3');
 
-const db = new sqlite3.Database('db.sqlite');
+const db = new sqlite3.Database('databases/users.sqlite');
 
 /**
  * @typedef {Object} User
@@ -19,27 +19,29 @@ db.run(
 );
 
 /**
- * @param {String | Number} user
+ * @param {String | Number} name_or_id
  * @return {Promise <User>}
  */
-function findUser (user) {
+function findUser(name_or_id) {
     return new Promise ((resolve, reject) => {
-        if (typeof user === 'string') {
+        let username = name_or_id;
+        if (typeof name_or_id === 'string') {
             let stmt = db.prepare('SELECT * FROM users WHERE username = (?)');
-            stmt.get(user, (err, row) => {
+            stmt.get(username, (err, row) => {
                 if (err) reject(err);
                 else resolve(row);
             });
             stmt.finalize();
         }
-        else if (Number.isInteger(user)) {
-            let id = user;
+        else if (Number.isInteger(name_or_id)) {
+            let id = name_or_id;
             let stmt = db.prepare('SELECT * FROM users WHERE id = (?)');
             stmt.get(id, (err, row) => {
                 if (err) reject(err);
                 else resolve(row);
             });
         }
+        else resolve(null);
     });
 }
 
@@ -48,7 +50,20 @@ function findUser (user) {
  * @param {String} password
  */
 function addUser (username, password){
-    return new Promise ((resolve, reject) => {
+    return new Promise (async (resolve, reject) => {
+        if (
+            typeof username !== 'string' ||
+            typeof password !== 'string'
+        ){
+            reject(TypeError('username and password must be strings'));
+        }
+
+        let user = await findUser(username);
+
+        if (user){
+            return resolve(null);
+        }
+
         let stmt = db.prepare(`
         INSERT INTO users ("username", "password")
             VALUES ((?),(?))`
@@ -69,6 +84,9 @@ function addUser (username, password){
     });
 }
 
+/**
+ * @name userController
+ */
 module.exports = {
     findUser, addUser
 }
