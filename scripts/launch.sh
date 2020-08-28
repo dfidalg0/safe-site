@@ -20,3 +20,5 @@ fi
 if ! [[ -d databases ]]; then
     mkdir databases
 fi
+
+node .
