@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon .",
-    "start": "bash ./scripts/launch.sh"
+    "dev": "nodemon -r dotenv/config .",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +20,9 @@
     "http": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
-    "sqlite3": "^5.0.0"
+    "pg": "^8.3.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  }
 }

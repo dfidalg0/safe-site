@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 const routes = {
     auth : require('./apps/auth/routes'),
     pages: require('./apps/pages/routes'),
-}
+};
 
 const app = express();
 

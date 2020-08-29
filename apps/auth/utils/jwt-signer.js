@@ -1,8 +1,7 @@
 const jwt = require('jsonwebtoken');
-const fs = require('fs');
 
-const public = fs.readFileSync('keys/jwt/public.key', 'utf-8');
-const private = fs.readFileSync('keys/jwt/private.key', 'utf-8');
+const public = process.env.JWT_PUBLIC_KEY;
+const private = process.env.JWT_PRIVATE_KEY;
 const algorithm = 'ES256';
 
 /**
