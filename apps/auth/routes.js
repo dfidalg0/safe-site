@@ -9,7 +9,7 @@ routes.get('/', (req, res) => {
     res.send('Authentication server is OK');
 });
 
-routes.post('/login', async (req,res) => {
+routes.post('/login', async (req, res, next) => {
     let { username, password } = req.body;
 
     try {
@@ -30,12 +30,13 @@ routes.post('/login', async (req,res) => {
         }
     }
     catch (err){
-        console.log(err);
-        res.status(500).send('Internal Server Error');
+        console.error(err);
+        res.status(500);
+        next();
     }
 });
 
-routes.post('/register', async (req,res) => {
+routes.post('/register', async (req, res, next) => {
     let { username, password } = req.body;
 
     try {
@@ -57,7 +58,8 @@ routes.post('/register', async (req,res) => {
         }
         console.log(err);
 
-        return res.status(500).send('Internal Server Error');
+        res.status(500);
+        next();
     }
 });
 

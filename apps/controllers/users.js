@@ -9,7 +9,6 @@ const db = new Pool({
  * @property {Number} id
  * @property {String} username
  * @property {String} password
- *
  */
 
 db.query(
@@ -83,4 +82,4 @@ function addUser (username, password){
  */
 module.exports = {
     findUser, addUser
-}
+};

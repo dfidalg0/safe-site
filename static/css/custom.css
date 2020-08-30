@@ -1,0 +1,40 @@
+html, body {
+  height: 100%;
+}
+
+#main {
+  min-height: 100%;
+  overflow:auto;
+  padding-bottom: 110px;
+}
+
+#footer {
+  position: relative;
+  margin-top: -70px;
+  height: 70px;
+  clear:both;
+  padding-top:20px;
+  background-color: #a3a30dc0;
+  color: #000000;
+}
+
+#footer a, a {
+  color: #000000;
+  text-decoration: none;
+}
+
+#footer a:hover, a:hover {
+  color: #0d67a3c0;
+}
+
+#login-button {
+  background-color: #ded851;
+}
+
+#login-button:hover {
+  background-color: #5a5922;
+}
+
+.float-right {
+  float: right;
+}
