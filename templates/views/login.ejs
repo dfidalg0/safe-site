@@ -1,16 +1,18 @@
-<% let title = 'Login' %>
+<% let title = 'Safe site - Login' %>
 
 <html>
     <%- include('../components/head.ejs', { title }) %>
 
     <body class="subpage">
+        <%- include('../components/header.ejs') %>
+
         <div id="main" class="container">
             <div class="row 200%">
-                <div class="6u 12u$(small)">
-                    Content
-                </div>
-                <div class="6u 12u$(small)">
+                <div class="float-right 6u 12u$(small)">
                     <%- include('../components/loginform.ejs') %>
+                </div>
+                <div class="float-right 6u 12u$(small)">
+                    <%- include('../components/description.ejs') %>
                 </div>
             </div>
         </div>

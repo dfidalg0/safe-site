@@ -1,11 +1,12 @@
-<div id="loginform">
+<div class="content-card" id="loginform">
+    <h3>Login</h3>
     <form method="post" action="/auth/login">
         <div class="row uniform">
             <div class="12u">
-                <input type="text" name="username" id="username" placeholder="username" />
+                <input type="text" required autocomplete="username" name="username" id="username" placeholder="username" />
             </div>
             <div class="12u">
-                <input type="password" name="password" id="password" placeholder="password" />
+                <input type="password" required autocomplete="new-password" name="password" id="password" placeholder="password" />
             </div>
             <!-- Break -->
             <div class="6u">
@@ -13,11 +14,14 @@
                 <label for="remember">Remember me</label>
             </div>
             <div class="6u">
-                <a href="#"> Forgot my password </a>
+                <a class="float-right" href="#"> Forgot my password </a>
             </div>
             <!-- Break -->
             <div class="12u">
-                <input class="float-right 12u" id="login-button" type="submit" value="login">
+                <input class="12u" id="" type="submit" value="login">
+            </div>
+            <div class="12u">
+                <a class="12u button"> Register </a>
             </div>
         </div>
     </form>

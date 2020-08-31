@@ -10,7 +10,7 @@ routes.get('/', (req, res) => {
 });
 
 routes.post('/login', async (req, res, next) => {
-    let { username, password } = req.body;
+    let { username, password, remember } = req.body;
 
     try {
         let user = await userController.findUser(username);
