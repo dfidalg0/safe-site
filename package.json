@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -e njk,js -r dotenv/config .",
-    "start": "node index.js"
+    "dev": "nodemon -r dotenv/config",
+    "start": "node index.js",
+    "migrate": "node scripts/migrate.js"
   },
   "keywords": [],
   "author": "",

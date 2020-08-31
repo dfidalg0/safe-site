@@ -1,8 +1,4 @@
-const { Pool } = require('pg');
-
-const db = new Pool({
-    connectionString: process.env.DATABASE_URL
-});
+const db = require('./clients/database');
 
 /**
  * @typedef {Object} User
@@ -10,14 +6,6 @@ const db = new Pool({
  * @property {String} username
  * @property {String} password
  */
-
-db.query(
-    `CREATE TABLE IF NOT EXISTS users (
-        id SERIAL,
-        username VARCHAR(32) UNIQUE NOT NULL,
-        password VARCHAR(2000) NOT NULL
-    )`
-);
 
 /**
  * @param {String | Number} name_or_id
