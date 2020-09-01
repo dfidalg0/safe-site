@@ -43,7 +43,7 @@ function findUser(name_or_id) {
  * @param {String} password
  * @return {Promise <User>} Inserted user
  */
-function addUser (username, password){
+function addUser (username, password, email){
     return new Promise (async (resolve, reject) => {
         try {
             if (typeof username !== 'string' || typeof password !== 'string') {
@@ -54,7 +54,7 @@ function addUser (username, password){
                 `INSERT INTO users (username, password, email)
                     VALUES ($1, $2, $3) RETURNING *
                 `,
-                [username, password]
+                [username, password, email]
             )).rows;
 
             resolve(rows.length ? rows[0] : null);
