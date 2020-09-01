@@ -6,7 +6,7 @@ const signer = require('./utils/jwt-signer');
 const routes = Router();
 
 routes.use((req, res, next) => {
-    if (req.method === 'GET'){
+    if (req.method !== 'POST'){
         res.status(403);
     }
     next();
