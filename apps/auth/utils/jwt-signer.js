@@ -45,7 +45,7 @@ module.exports = {
         }
         catch (err) {
             if (err.message === 'invalid token') {
-                console.log(`Invalid token: ${req.cookies.token}`);
+                console.error(`Invalid token: ${req.cookies.token}`);
             }
         }
 

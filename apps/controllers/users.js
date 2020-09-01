@@ -43,24 +43,32 @@ function findUser(name_or_id) {
  * @param {String} password
  * @return {Promise <User>} Inserted user
  */
-function addUser (username, password){
+function addUser (username, password, email){
     return new Promise (async (resolve, reject) => {
+        let client = await db.connect();
         try {
-            if (typeof username !== 'string' || typeof password !== 'string') {
-                throw TypeError('username and password must be strings');
-            }
-
-            let rows = (await db.query(
-                `INSERT INTO users (username, password, email)
-                    VALUES ($1, $2, $3) RETURNING *
-                `,
-                [username, password]
+            let rows = (await client.query(
+                'SELECT id FROM users WHERE username=$1',
+                [username]
             )).rows;
 
-            resolve(rows.length ? rows[0] : null);
+            if (rows.length) resolve(null);
+            else {
+                rows = (await client.query(
+                    `INSERT INTO users (username, password, email)
+                    VALUES ($1, $2, $3) RETURNING *
+                `,
+                    [username, password, email]
+                )).rows;
+
+                resolve(rows.length ? rows[0] : null);
+            }
         }
         catch (err){
             reject(err);
+        }
+        finally {
+            client.release();
         }
     });
 }
