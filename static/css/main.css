@@ -13,6 +13,7 @@
 
 	html, body {
 		height: 100%;
+		color: #FFF;
 	}
 
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
@@ -2888,17 +2889,8 @@
 				border-color: rgba(255, 255, 255, 0.25);
 			}
 
-		.wrapper.style2 {
-			background-color: #f2f2f2;
-			color: #a6a6a6;
-		}
-
 			.wrapper.style2 input, .wrapper.style2 select, .wrapper.style2 textarea {
 				color: #000;
-			}
-
-			.wrapper.style2 a {
-				color: #8a4680;
 			}
 
 			.wrapper.style2 strong, .wrapper.style2 b {
@@ -2924,15 +2916,6 @@
 
 			.wrapper.style2 .box {
 				border-color: rgba(0, 0, 0, 0.15);
-			}
-
-			.wrapper.style2 input[type="submit"],
-			.wrapper.style2 input[type="reset"],
-			.wrapper.style2 input[type="button"],
-			.wrapper.style2 button,
-			.wrapper.style2 .button {
-				background-color: #000;
-				color: #f2f2f2 !important;
 			}
 
 				.wrapper.style2 input[type="submit"].alt,
@@ -3098,8 +3081,7 @@
 
 		.wrapper.style3 {
 			background-color: #000;
-			color: #bfbfbf;
-			background-image: url(../../images/bg.jpg);
+			background-image: url('/static/img/yellow_locker.jpg');
 			background-size: cover;
 			background-attachment: fixed;
 			background-position: center;
@@ -3108,10 +3090,6 @@
 
 			.wrapper.style3 input, .wrapper.style3 select, .wrapper.style3 textarea {
 				color: #ffffff;
-			}
-
-			.wrapper.style3 a {
-				color: #8a4680;
 			}
 
 			.wrapper.style3 strong, .wrapper.style3 b {
@@ -3137,15 +3115,6 @@
 
 			.wrapper.style3 .box {
 				border-color: rgba(255, 255, 255, 0.25);
-			}
-
-			.wrapper.style3 input[type="submit"],
-			.wrapper.style3 input[type="reset"],
-			.wrapper.style3 input[type="button"],
-			.wrapper.style3 button,
-			.wrapper.style3 .button {
-				background-color: #f2f2f2;
-				color: #000 !important;
 			}
 
 				.wrapper.style3 input[type="submit"]:hover,
@@ -4159,14 +4128,10 @@
 
 			.banner > article h2 {
 				font-size: 7rem;
-				margin-bottom: 0;
+				margin-bottom: -35pt;
 				color: #FFF;
 				font-weight: 300;
 			}
-
-				.banner > article h2:after {
-					display: none;
-				}
 
 			.banner > article p {
 				color: rgba(255, 255, 255, 0.65);
@@ -4177,18 +4142,6 @@
 				padding-bottom: 1.75rem;
 				letter-spacing: .25rem;
 			}
-
-				.banner > article p:after {
-					content: '';
-					position: absolute;
-					margin: auto;
-					right: 0;
-					bottom: 0;
-					left: 0;
-					width: 50%;
-					height: 1px;
-					background-color: rgba(255, 255, 255, 0.65);
-				}
 
 			.banner > article a {
 				color: #FFF;
@@ -4255,7 +4208,8 @@
 			}
 
 			.banner > article h2 {
-				font-size: 4em;
+				font-size: 3em;
+				margin-bottom: -25pt;
 			}
 
 		}

@@ -1,13 +1,12 @@
 <div class="content-card" id="loginform">
     <h3>Register</h3>
-    <form method="post" action="/auth/login">
+    <form method="post" action="/auth/register">
         <div class="row uniform">
             <div class="12u">
-                <input type="text" required autocomplete="email" name="email" id="email" placeholder="email" />
+                <input type="text" required autocomplete="username" name="username" id="username" placeholder="username" />
             </div>
             <div class="12u">
-                <input type="text" required autocomplete="username" name="username" id="username"
-                    placeholder="username" />
+                <input type="text" required autocomplete="email" name="email" id="email" placeholder="email" />
             </div>
             <div class="12u">
                 <input type="password" required autocomplete="new-password" name="password" id="password"
@@ -27,6 +26,7 @@
                 <input class="12u" id="" type="submit" value="register">
             </div>
             <div class="12u">
+                Already have an account?
                 <a class="12u button" href="/login"> Login </a>
             </div>
         </div>

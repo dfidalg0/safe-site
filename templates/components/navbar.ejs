@@ -1,5 +1,9 @@
-<header id="header">
-    <div class="logo"><a href="/">Safe site</a></div>
+<% if (typeof alt === 'undefined'){
+    alt = false;
+} %>
+
+<header id="header" <%- alt ? 'class="alt"' : "" %>>
+    <div class="logo"><a href="/">Safe Site</a></div>
     <a href="#menu"></a>
 </header>
 

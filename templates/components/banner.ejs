@@ -1,0 +1,35 @@
+<%
+    let imgsrc = [
+        '/static/img/yellow_locker.jpg',
+        '/static/img/password.jpg',
+        '/static/img/https.png',
+        '/static/img/cookies.jpg'
+    ];
+    let h2 = [
+        'Safe Site',
+        'Safe Passwords',
+        'Safe Browsing',
+        'Safe Cookies'
+    ];
+    let p = [
+        'A website made focusing completely on security',
+        'All passwords are safely stored with \<a href="https://en.wikipedia.org/wiki/Argon2"\>argon2\</a\> hashing - \<a href="https://github.com/diegood12/safe-site/blob/master/apps/auth/routes.js" target="_blank"\> Check! \</a\>',
+        'Your connection will be always encrypted thanks to \<a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">HSTS\</a\>',
+        'Cookies are sent only by secure connections'
+    ];
+%>
+
+<section class="banner full">
+    <% for(let i = 0; i < imgsrc.length; ++i) { %>
+        <article>
+            <img src="<%= imgsrc[i] %> " alt="" />
+            <div class="inner">
+                <header class="content-card">
+                    <h2><%- h2[i] %> </h2>
+                    <hr>
+                    <p><%- p[i] %> </p>
+                </header>
+            </div>
+        </article>
+    <% } %>
+</section>

@@ -1,17 +1,43 @@
-<% let title = 'Safe Site - Home' %>
+<% let title = 'Safe Site' %>
 
 <html>
 <%- include('../components/head.ejs', { title }) %>
 
-<body class="subpage">
-    <%- include('../components/navbar.ejs') %>
+<body id="home">
+    <div id="main">
+        <%- include('../components/navbar.ejs', {alt : true}) %>
 
-    <div id="main" class="container">
-        <div class="row 200%">
-            <div class="12u">
-                <%- include('../components/description.ejs') %>
+        <%- include('../components/banner.ejs') %>
+
+        <section id="one" class="wrapper style2">
+            <div class="container">
+
             </div>
-        </div>
+        </section>
+        <section id="two" class="wrapper style3">
+            <div class="inner container">
+                <div class="row 12u">
+                    <div class="6u">
+                        <%- include('../components/description.ejs') %>
+                    </div>
+                    <div class="6u">
+                        <div class="content-card align-center">
+                            <span>
+                                Create an account. It's completely free and you don't even need to use your real data to register. <br>
+                                <br>
+                            </span>
+                            <a href="/register" class="button 9u"> Give it a try </a> <br> <br>
+                        </div>
+                        <div class="content-card align-center">
+                            <span>
+                                Already have an account? <br> <br>
+                            </span>
+                            <a href="/login" class="button 9u"> Login </a> <br> <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
     <%- include('../components/footer.ejs') %>
 </body>

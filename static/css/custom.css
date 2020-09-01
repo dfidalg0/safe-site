@@ -11,6 +11,14 @@
   float: right;
 }
 
+.style3 .content-card {
+  background-color: #0000009c;
+}
+
+article .content-card {
+  background-color: #000000e1;
+}
+
 #footer {
   position: relative;
   margin-top: -90px;
@@ -26,4 +34,9 @@
 
 li:before {
   content: "\e900";
+}
+
+#home #main {
+  padding: 0;
+  padding-bottom: 90px;
 }
