@@ -5,8 +5,11 @@ const signer = require('./utils/jwt-signer');
 
 const routes = Router();
 
-routes.get('/', (req, res) => {
-    res.send('Authentication server is OK');
+routes.use((req, res, next) => {
+    if (req.method === 'GET'){
+        res.status(403);
+    }
+    next();
 });
 
 routes.post('/login', async (req, res, next) => {
@@ -16,7 +19,7 @@ routes.post('/login', async (req, res, next) => {
         let user = await userController.findUser(username);
 
         if (!user || !await hasher.verify(user.password, password)) {
-            res.status(403).send('Forbidden');
+            res.redirect('/login');
         }
         else {
             let token = await signer.sign(user);
@@ -26,7 +29,7 @@ routes.post('/login', async (req, res, next) => {
                 expires: new Date(Date.now() + 2 * 60 * 60 * 1000)
             });
 
-            res.send('Authorized');
+            res.redirect('/');
         }
     }
     catch (err){
@@ -37,25 +40,22 @@ routes.post('/login', async (req, res, next) => {
 });
 
 routes.post('/register', async (req, res, next) => {
-    let { username, password } = req.body;
+    let { username, email, password, passchecker, remember } = req.body;
 
     try {
         if (typeof password !== 'string'){
             throw TypeError();
         }
         password = await hasher.hash(password);
-        let user = await userController.addUser(username, password);
+        let user = await userController.addUser(username, password, email);
 
         if (!user){
-            return res.status(403).send('User already exists');
+            return res.redirect('/register');
         }
 
-        return res.send('Authorized');
+        return res.redirect('/');
     }
     catch (err){
-        if (err.constructor === TypeError){
-            return res.status(403).send('Forbidden');
-        }
         console.log(err);
 
         res.status(500);

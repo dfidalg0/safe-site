@@ -51,8 +51,8 @@ function addUser (username, password){
             }
 
             let rows = (await db.query(
-                `INSERT INTO users (username, password)
-                    VALUES ($1, $2) RETURNING *
+                `INSERT INTO users (username, password, email)
+                    VALUES ($1, $2, $3) RETURNING *
                 `,
                 [username, password]
             )).rows;

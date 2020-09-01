@@ -1,0 +1,41 @@
+<% let title = 'Safe Site - Error ' + code %>
+
+<html>
+<%- include('../components/head.ejs', { title }) %>
+
+<body class="subpage">
+    <%- include('../components/navbar.ejs') %>
+
+    <div id="main" class="container">
+        <div class="row 200%">
+            <div class="12u">
+                <div id="error-card" class="content-card">
+                    <h1> Error <%= code + (message ? ` - ${message}` : '') %> </h1>
+                    <p>
+                        <% if (code === 404) { %>
+                            <div class="container align-center">
+                                <img src="/static/img/broken-padlock.png" alt=""> <br>
+                                The page you're requesting couldn't be found.
+                            </div>
+                        <% } else if (code === 403) { %>
+                            <div class="container align-center">
+                                <img src="/static/img/gandalf.png" alt="">
+                                <br>
+                                <h2> The dark fire will not avail you, flame of Udûn. Go back to the Shadow! </h2>
+                                <h1> YOU! SHALL NOT! PASS! </h1>
+                            </div>
+                        <% } else { %>
+                            Something went wrong with your solicitation. Feel free to open an issue
+                            <a href="https://github.com/diegood12/safe-site/issues" title="Issues - Github" target="_blank">
+                                here
+                            </a>.
+                        <% } %>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../components/footer.ejs') %>
+</body>
+
+</html>
