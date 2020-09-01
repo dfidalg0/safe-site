@@ -61,7 +61,8 @@ function addUser (username, password, email){
                     [username, password, email]
                 )).rows;
 
-                resolve(rows.length ? rows[0] : null);
+                if (!rows.length) throw Error(`Couldn't insert ${username} on DB`);
+                else resolve(rows[0]);
             }
         }
         catch (err){
