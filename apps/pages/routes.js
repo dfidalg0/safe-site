@@ -5,7 +5,10 @@ const routes = Router();
 routes.get('/', (req, res) => {
     let { userID } = req.session;
 
-    return res.render('home.ejs', { userID });
+    if (userID){
+        res.render('dashboard.ejs', { userID });
+    }
+    else res.render('home.ejs', { userID });
 });
 
 routes.get(['/login', '/register'], (req, res, next) => {

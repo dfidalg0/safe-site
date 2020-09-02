@@ -1,0 +1,33 @@
+<% let title = 'Safe Site - Dashboard' %>
+
+<html>
+    <%- include('../components/head.ejs', { title }) %>
+
+    <body class="subpage">
+        <%- include('../components/navbar.ejs') %>
+
+        <div id="main" class="container">
+            <div class="row 200%">
+                <div class="6u 12u$(small)">
+                    <div class="content-card">
+                        <% for(let i = 0; i < 5; ++i) { %>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi dolores laborum animi nisi doloremque, corrupti, ratione
+                            hic praesentium, impedit eum est minus eaque! Aut voluptatem ipsam error nobis officia in.
+                        <% } %>
+                    </div>
+                </div>
+                <div class="6u 12u$(small)">
+                    <div class="content-card">
+                        <% for(let i = 0; i < 5; ++i) { %>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi dolores laborum animi nisi doloremque, corrupti, ratione
+                            hic praesentium, impedit eum est minus eaque! Aut voluptatem ipsam error nobis officia in.
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%- include('../components/footer.ejs') %>
+    </body>
+
+</html>
