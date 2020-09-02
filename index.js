@@ -27,6 +27,7 @@ const app = express();
 
 if (app.get('env') === 'production'){
     sessionConfig.cookie.secure = true;
+    app.set('trust proxy', 1);
 }
 
 app.set('view engine', 'ejs');
