@@ -4,6 +4,55 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 */
 
+function bindBalloons ($) {
+	let $error = $('.error')
+
+	backgroundColor = '#e73c3ca9';
+	color = '#fff';
+
+	$error.focus(function () {
+		let field = $(this);
+		field.showBalloon({
+			contents: field.attr('error-message'),
+			html: "true",
+			position: "top",
+			offsetX: 0,
+			css: {
+				border: 'solid 1px red',
+				backgroundColor,
+				color
+			}
+		});
+	});
+
+	$error.focusout(function () {
+		$(this).hideBalloon();
+	});
+
+	let $globalError = $('#global-error');
+	$globalError.showBalloon({
+		contents: $globalError.attr('error-message'),
+		html: "true",
+		position: "right",
+		display: "inline",
+		offsetX: 20,
+		css: {
+			border: 'solid 1px red',
+			backgroundColor,
+			color
+		}
+	});
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+	bindBalloons($);
+});
+
+$(window).resize(() => {
+	$('.error', '#global-error').hideBallon();
+	bindBallons($);
+});
+
 var settings = {
 
 	banner: {

@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const hasher = require('./utils/hashing').argon2;
 const userController = require('../controllers/users');
-const signer = require('./utils/jwt-signer');
 const validator = require('./utils/request-validator');
 
 const routes = Router();
@@ -41,21 +40,16 @@ routes.post('/login', async (req, res, next) => {
 
         let user = await userController.findUser(username);
 
-        if (!user || !await hasher.verify(user.password, password)) {
+        if (!req.errors && (!user || !await hasher.verify(user.password, password))){
             req.addError('login', 'Wrong username or password');
         }
 
         if (req.errors) {
+            req.session.errors = req.errors;
             res.redirect('/login');
         }
         else {
-            let token = await signer.sign(user);
-
-            res.cookie('token', token, {
-                httpOnly: true,
-                expires: new Date(Date.now() + 2 * 60 * 60 * 1000)
-            });
-
+            req.session.user = user;
             res.redirect('/');
         }
     }
@@ -76,10 +70,11 @@ routes.post('/register', async (req, res, next) => {
 
         req.check('email').isEmail('Insert a valid email');
 
-        req.check('password')
-            .equals('Password doesn\'t match confirmation', passchecker);
+        req.check('passchecker')
+            .equals('Password doesn\'t match confirmation', password);
 
         if (req.errors){
+            req.session.errors = req.errors;
             return res.redirect('/register');
         }
 
@@ -88,9 +83,11 @@ routes.post('/register', async (req, res, next) => {
 
         if (!user){
             req.addError('isAllowed', 'User already exists', 'username');
-            console.log(req.errors);
+            req.session.errors = req.errors;
             return res.redirect('/register');
         }
+
+        req.session.user = user;
 
         return res.redirect('/');
     }

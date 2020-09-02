@@ -20,7 +20,7 @@ class Checker {
         this.prototype[func.name] = function (message, arg) {
             if (!this._body[this._field]){
                 ++ this._counter;
-                this._errors[this._field] = [{exists : `You must fill the ${this._field} field`}];
+                this._errors[this._field] = [`You must fill the ${this._field} field`];
 
                 return this;
             }
@@ -28,8 +28,8 @@ class Checker {
             let v = func(this._body[this._field], arg);
 
             if (!v){
-                if (!this._errors[this._field]) this._errors[this._field] = [{[func.name] : message}];
-                else this._errors[this._field].push({ [func.name]: message });
+                if (!this._errors[this._field]) this._errors[this._field] = [message];
+                else this._errors[this._field].push(message);
 
                 ++ this._counter;
             }
@@ -39,8 +39,8 @@ class Checker {
     }
 
     addError (key, message, field) {
-        if (this._errors[field]) this._errors[field].push({ [key]: message });
-        else this._errors[field] = [{ [key]: message }]
+        if (this._errors[field]) this._errors[field].push(message);
+        else this._errors[field] = [message]
         ++this._counter;
     }
 

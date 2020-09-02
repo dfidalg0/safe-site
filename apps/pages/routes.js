@@ -7,11 +7,17 @@ routes.get('/', (req, res) => {
 });
 
 routes.get('/login', (req, res) => {
-    res.render('login.ejs');
+    let errors = req.session.errors || {};
+
+    req.session.errors = null;
+    res.render('login.ejs', { errors });
 });
 
 routes.get('/register', (req, res) => {
-    res.render('register.ejs');
+    let errors = req.session.errors || {};
+
+    req.session.errors = null;
+    res.render('register.ejs', { errors });
 });
 
 routes.use((_req, res) => {

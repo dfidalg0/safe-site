@@ -35,20 +35,5 @@ module.exports = {
                 else resolve(token);
             });
         });
-    },
-
-    middleware: async (req, res, next) => {
-        try {
-            if (req.cookies.token) {
-                res.locals.cred = await signer.decode(req.cookies.token);
-            }
-        }
-        catch (err) {
-            if (err.message === 'invalid token') {
-                console.error(`Invalid token: ${req.cookies.token}`);
-            }
-        }
-
-        next();
     }
 }
