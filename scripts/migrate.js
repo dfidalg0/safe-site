@@ -51,6 +51,8 @@ async function main () {
             `, [migration.name]);
             console.log(' - Done.');
         }
+
+        console.log('Migration process finished');
     }
     catch (err){
         console.error(err.stack);

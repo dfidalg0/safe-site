@@ -50,3 +50,18 @@ li:before {
   max-width: 100%;
   max-height: 50vh;
 }
+
+form input.error, form input.error:focus {
+  border-width: 2px;
+  border-color: #d30f0f;
+	box-shadow: 0 0 0 1px #ff0000;
+}
+
+.error-message {
+  font-size: 10pt;
+  color: #d30f0f;
+}
+
+.content-card > h3 {
+  display: inline-flex;
+}

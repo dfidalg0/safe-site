@@ -1,12 +1,14 @@
 <div class="content-card" id="loginform">
-    <h3>Login</h3>
+    <h3 <%- errors.globals ? `id="global-error" error-message="${errors.globals.join('<br>')}"` : '' %>>Login</h3>
     <form method="post" action="/auth/login">
         <div class="row uniform">
             <div class="12u">
-                <input type="text" required autocomplete="username" name="username" id="username" placeholder="username" />
+                <input type="text" required autofocus autocomplete="username" name="username" id="username" placeholder="username"
+                <%- errors.username ? `class="error" error-message="${errors.username.join('<br>')}"` : ''%>/>
             </div>
             <div class="12u">
-                <input type="password" required autocomplete="current-password" name="password" id="password" placeholder="password" />
+                <input type="password" required autocomplete="current-password" name="password" id="password" placeholder="password"
+                <%- errors.password ? `class="error" error-message="${errors.password.join('<br>')}"` : ''%>/>
             </div>
             <!-- Break -->
             <div class="6u">

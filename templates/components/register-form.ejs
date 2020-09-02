@@ -1,20 +1,22 @@
 <div class="content-card" id="loginform">
-    <h3>Register</h3>
+    <h3 <%- errors.globals ? `id="global-error" error-message="${errors.globals.join('<br>')}"` : '' %>>Register</h3>
     <form method="post" action="/auth/register">
         <div class="row uniform">
             <div class="12u">
-                <input type="text" required autocomplete="username" name="username" id="username" placeholder="username" />
+                <input type="text" required autofocus autocomplete="username" name="username" id="username" placeholder="username"
+                <%- errors.username ? `class="error" error-message="${errors.username.join('<br>')}"` : ''%>/>
             </div>
             <div class="12u">
-                <input type="text" required autocomplete="email" name="email" id="email" placeholder="email" />
+                <input type="text" required autocomplete="email" name="email" id="email" placeholder="email"
+                <%- errors.email ? `class="error" error-message="${errors.email.join('<br>')}"` : ''%>/>
             </div>
             <div class="12u">
-                <input type="password" required autocomplete="new-password" name="password" id="password"
-                    placeholder="password" />
+                <input type="password" required autocomplete="new-password" name="password" id="password" placeholder="password"
+                <%- errors.password ? `class="error" error-message="${errors.password.join('<br>')}"` : ''%>/>
             </div>
             <div class="12u">
-                <input type="password" required autocomplete="" name="passchecker" id="passchecker"
-                    placeholder="confirm password" />
+                <input type="password" required autocomplete="new-password" name="passchecker" id="passchecker" placeholder="confirm password"
+                <%- errors.passchecker ? `class="error" error-message="${errors.passchecker.join('<br>')}"` : ''%>/>
             </div>
             <!-- Break -->
             <div class="6u">
