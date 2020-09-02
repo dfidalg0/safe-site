@@ -3,24 +3,36 @@ const { Router } = require('express');
 const routes = Router();
 
 routes.get('/', (req, res) => {
-    return res.render('home.ejs');
+    let { userID } = req.session;
+
+    return res.render('home.ejs', { userID });
+});
+
+routes.get(['/login', '/register'], (req, res, next) => {
+    if (req.session.userID){
+        return res.redirect('/');
+    }
+
+    next();
 });
 
 routes.get('/login', (req, res) => {
     let errors = req.session.errors || {};
 
-    req.session.errors = null;
+    req.session.destroy();
     res.render('login.ejs', { errors });
 });
 
 routes.get('/register', (req, res) => {
     let errors = req.session.errors || {};
 
-    req.session.errors = null;
+    req.session.destroy();
     res.render('register.ejs', { errors });
 });
 
-routes.use((_req, res) => {
+routes.use((req, res) => {
+    let { userID } = req.session;
+
     if (res.statusCode < 400){
         res.status(404);
     }
@@ -36,7 +48,7 @@ routes.use((_req, res) => {
         default:  message = '';
     }
 
-    res.render('error.ejs', { code, message });
+    res.render('error.ejs', { code, message, userID });
 });
 
 module.exports = routes;

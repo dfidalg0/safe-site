@@ -46,10 +46,12 @@ routes.post('/login', async (req, res, next) => {
 
         if (req.errors) {
             req.session.errors = req.errors;
+            await req.session.save();
             res.redirect('/login');
         }
         else {
-            req.session.user = user;
+            req.session.userID = user.id;
+            await req.session.save();
             res.redirect('/');
         }
     }
@@ -75,6 +77,7 @@ routes.post('/register', async (req, res, next) => {
 
         if (req.errors){
             req.session.errors = req.errors;
+            await req.session.save();
             return res.redirect('/register');
         }
 
@@ -84,10 +87,12 @@ routes.post('/register', async (req, res, next) => {
         if (!user){
             req.addError('isAllowed', 'User already exists', 'username');
             req.session.errors = req.errors;
+            await req.session.save();
             return res.redirect('/register');
         }
 
-        req.session.user = user;
+        req.session.userID = user.id;
+        await req.session.save();
 
         return res.redirect('/');
     }
@@ -97,6 +102,14 @@ routes.post('/register', async (req, res, next) => {
         res.status(500);
         next();
     }
+});
+
+routes.post('/logout', (req, res) => {
+    if (req.session.userID){
+        req.session.destroy();
+    }
+
+    res.redirect('/');
 });
 
 module.exports = routes;

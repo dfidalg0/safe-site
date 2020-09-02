@@ -10,7 +10,15 @@
 <nav id="menu">
     <ul class="links">
         <li><a href="/">Home</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/register">Register</a></li>
+        <% if (typeof userID !== 'undefined') { %>
+            <li>
+                <form action="/auth/logout" method="POST">
+                    <button type="submit"> Logout</button>
+                </form>
+            </li>
+        <% } else { %>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+        <% } %>
     </ul>
 </nav>

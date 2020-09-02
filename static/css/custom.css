@@ -65,3 +65,19 @@ form input.error, form input.error:focus {
 .content-card > h3 {
   display: inline-flex;
 }
+
+#menu > ul.links > li > form > button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  font-size: 100%;
+  color: rgba(255, 255, 255, 0.5)!important;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  outline: none;
+}
+
+#menu > ul.links > li > form > button:hover {
+  color: #e3e63d!important;
+}

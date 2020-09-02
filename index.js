@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const path = require('path');
-const session = require('express-session');
+const signer = require('./apps/auth/utils/jwt-signer');
 
 const port = process.env.PORT || 3000;
 
@@ -14,14 +14,11 @@ const routes = {
 };
 
 const sessionConfig = {
-    secret: process.env.SESSION_SECRET,
     name: 's_token',
-    resave: false,
-    saveUninitialized: false,
     cookie : {
         httpOnly: true
     }
-}
+};
 
 const app = express();
 
@@ -40,9 +37,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use(session(sessionConfig));
-
 app.use('/static', express.static(path.join(__dirname, 'static')));
+
+app.use(signer.middleware(sessionConfig));
 app.use('/auth', routes.auth);
 app.use('/', routes.pages);
 

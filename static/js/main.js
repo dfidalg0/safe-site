@@ -49,8 +49,8 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 $(window).resize(() => {
-	$('.error', '#global-error').hideBallon();
-	bindBallons($);
+	$('.error', '#global-error').hideBalloon();
+	bindBalloons($);
 });
 
 var settings = {
