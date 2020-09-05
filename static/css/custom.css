@@ -79,5 +79,6 @@ form input.error, form input.error:focus {
 }
 
 #menu > ul.links > li > form > button:hover {
+  display: inline-flex;
   color: #e3e63d!important;
 }
