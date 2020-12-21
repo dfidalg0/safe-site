@@ -1,0 +1,11 @@
+on:
+  push:
+    branches: [ master ]
+    
+jobs:
+  main:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Log something
+        run: echo something
