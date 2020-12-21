@@ -82,3 +82,22 @@ form input.error, form input.error:focus {
   display: inline-flex;
   color: #e3e63d!important;
 }
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #333232;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(100, 92, 44);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(44, 34, 0);
+}
